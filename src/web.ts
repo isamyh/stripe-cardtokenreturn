@@ -179,6 +179,7 @@ export class StripeWeb extends WebPlugin implements StripePlugin {
 
   async presentPaymentFlow(): Promise<{
     cardNumber: string;
+    token: string;
   }> {
     if (!this.paymentSheet) {
       throw new Error();
@@ -209,6 +210,7 @@ export class StripeWeb extends WebPlugin implements StripePlugin {
       cardNumber: token.card.last4,
     });
     return {
+      token: token.id,
       cardNumber: token.card.last4,
     };
   }
